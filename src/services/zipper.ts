@@ -70,7 +70,6 @@ export default class ZipperService {
         let copyPath = "";
         if (isWin) {
           let usedLetters = await driveLetters.usedLetters();
-          usedLetters = [];
           copyPath = path.join(
             usedLetters.length >= 2
               ? `${usedLetters[1]}:`
