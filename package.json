@@ -1,0 +1,48 @@
+{
+  "name": "sr-zipper",
+  "displayName": "Student Robotics ZIP Creator",
+  "description": "Creates ZIP containing student robotics code to be placed on USB sticks.",
+  "version": "0.1.0",
+  "publisher": "MrBBot",
+  "repository": "systemetric/sr-zipper",
+  "engines": {
+    "vscode": "^1.27.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onLanguage:python",
+    "onCommand:sr.zip"
+  ],
+  "main": "./out/extension",
+  "contributes": {
+    "commands": [
+      {
+        "command": "sr.zip",
+        "title": "Student Robotics: ZIP"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "package": "vsce package",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "postinstall": "node ./node_modules/vscode/bin/install"
+  },
+  "devDependencies": {
+    "@types/archiver": "^2.1.2",
+    "@types/fs-extra": "^5.0.4",
+    "@types/node": "^8.10.25",
+    "tslint": "^5.8.0",
+    "typescript": "^2.6.1",
+    "vsce": "^1.48.0",
+    "vscode": "^1.1.21"
+  },
+  "dependencies": {
+    "archiver": "^3.0.0",
+    "fs-extra": "^7.0.0",
+    "windows-drive-letters": "^3.1.0"
+  }
+}
