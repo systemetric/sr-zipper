@@ -2,7 +2,7 @@
   "name": "sr-zipper",
   "displayName": "Student Robotics ZIP Creator",
   "description": "Creates ZIP containing student robotics code to be placed on USB sticks.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "publisher": "MrBBot",
   "repository": "systemetric/sr-zipper",
   "engines": {
