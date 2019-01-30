@@ -22,7 +22,18 @@
         "command": "sr.zip",
         "title": "Student Robotics: ZIP"
       }
-    ]
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "Student Robotics Zipper configuration",
+      "properties": {
+        "srzipper.outputPath": {
+          "type": "string",
+          "default": "~/Desktop/robot.zip",
+          "description": "Output path for the ZIP"
+        }
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
@@ -42,7 +53,6 @@
   },
   "dependencies": {
     "archiver": "^3.0.0",
-    "fs-extra": "^7.0.0",
-    "windows-drive-letters": "^3.1.0"
+    "fs-extra": "^7.0.0"
   }
 }

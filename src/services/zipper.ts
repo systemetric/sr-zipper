@@ -1,9 +1,7 @@
-import { ExtensionContext, window } from "vscode";
+import { ExtensionContext, window, workspace } from "vscode";
 import * as fs from "fs-extra";
 import * as path from "path";
 import * as archiver from "archiver";
-//@ts-ignore
-import * as driveLetters from "windows-drive-letters";
 import * as os from "os";
 
 export default class ZipperService {
@@ -66,21 +64,12 @@ export default class ZipperService {
 
       const zipOutput = fs.createWriteStream(this._zipOutputPath);
       zipOutput.on("close", async () => {
-        const isWin = process.platform === "win32";
-        let copyPath = "";
-        if (isWin) {
-          let usedLetters = await driveLetters.usedLetters();
-          copyPath = path.join(
-            usedLetters.length >= 2
-              ? `${usedLetters[1]}:`
-              : path.join(os.homedir(), "Desktop"),
-            "robot.zip"
-          );
-        } else {
-          copyPath = path.join(os.homedir(), "robot.zip");
+        const outputPath: (string | undefined) = workspace.getConfiguration("srzipper").get("outputPath");
+        if(outputPath) {
+          const copyPath = outputPath.replace(/~/g, os.homedir()).replace(/[\/\\]/g, path.sep);
+          await fs.copy(this._zipOutputPath, copyPath);
+          window.showInformationMessage(`ZIP copied to ${copyPath}`);
         }
-        await fs.copy(this._zipOutputPath, copyPath);
-        window.showInformationMessage(`ZIP copied to ${copyPath}`);
         resolve(true);
       });
 
